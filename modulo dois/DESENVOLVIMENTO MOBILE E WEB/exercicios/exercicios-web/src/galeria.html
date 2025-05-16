@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria - Exercícios Web</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Tabela de informações */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .info-table th,
+        .info-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .info-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .info-table th {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="./index.html">Início</a></li>
+            <li><a href="./galeria.html">Galeria</a></li>
+            <li><a href="./contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Nossa Galeria</h1>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Imagem+1" alt="Imagem 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Imagem+2" alt="Imagem 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Imagem+3" alt="Imagem 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://via.placeholder.com/400x300?text=Imagem+4" alt="Imagem 4">
+            </div>
+        </div>
+
+        <table class="info-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Produto 1</td>
+                    <td>Descrição do produto 1</td>
+                    <td>R$ 99,90</td>
+                </tr>
+                <tr>
+                    <td>Produto 2</td>
+                    <td>Descrição do produto 2</td>
+                    <td>R$ 149,90</td>
+                </tr>
+                <tr>
+                    <td>Produto 3</td>
+                    <td>Descrição do produto 3</td>
+                    <td>R$ 199,90</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Twitter</a>
+            <a href="#" class="social-icon">Instagram</a>
+        </div>
+        <p class="copyright">&copy; 2025 Seu Nome. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

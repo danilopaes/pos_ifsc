@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progressão Aritmética</title>
+</head>
+<body>
+  <h1>Progressão Aritmética</h1>
+  <form>
+    <label for="elemento1">Elemento 1</label>
+    <input type="number" name="elemento1" id="elemento1">
+
+    <label for="razao">Razão</label>
+    <input type="number" name="razao" id="razao">
+
+    <label for="elementos">Elementos</label>
+    <input type="number" name="elementos" id="elementos">
+
+    <input type="button" value="PA" onclick="gerar()">
+  </form>
+
+  <div id="resposta"></div>
+
+  <script>
+    function gerar(){
+      const elemento1 = parseInt(document.getElementById("elemento1").value);
+      const razao = parseInt(document.getElementById("razao").value);
+      const elementos = parseInt(document.getElementById("elementos").value);
+      let PA = "" + elemento1;
+      for(i = 1; i <= elementos; i ++){
+        PA = PA + (elemento1 + i * razao)
+      }
+      document.getElementById("resposta").innerHTML = PA;
+    }
+  </script>
+</body>
+</html>

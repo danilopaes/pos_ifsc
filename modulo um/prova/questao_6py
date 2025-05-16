@@ -1,0 +1,11 @@
+numero = 55
+binario = []
+for i in range(8):
+ resto = numero % 2
+ binario.append(resto)
+ numero //= 2 # barras duplas representam divisao inteira
+# Exibe o número em formato binário
+print("Representação binária (8 bits):")
+# imprime os elementos da lista na ordem inversa
+# o caracter "*" faz com que sejam impressos apenas os valores
+print(*reversed(binario))

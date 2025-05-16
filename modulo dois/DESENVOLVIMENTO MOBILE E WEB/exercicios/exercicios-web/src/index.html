@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios Web</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="./galeria.html">Galeria</a></li>
+            <li><a href="./contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Bem-vindo ao Nosso Site</h1>
+        <p>Este é um site demonstrativo criado para praticar HTML e CSS. Explore as diferentes páginas para ver diversos elementos e estilos em ação.</p>
+        <img src="../img/1.jpg" alt="Imagem de demonstração" class="feature-image">
+        
+        <section class="articles">
+            <article>
+                <h2>Primeiro Artigo</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </article>
+            <article>
+                <h2>Segundo Artigo</h2>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </article>
+            <article>
+                <h2>Terceiro Artigo</h2>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </article>
+        </section>
+
+        <section class="progress-section">
+            <h2>Barra de Progresso</h2>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+        </section>
+
+        <section class="buttons-showcase">
+            <button class="btn blue" onclick="changeProgressColor('#007bff')">Azul</button>
+            <button class="btn green" onclick="changeProgressColor('#28a745')">Verde</button>
+            <button class="btn red" onclick="changeProgressColor('#dc3545')">Vermelho</button>
+        </section>
+
+        <script>
+            function changeProgressColor(color) {
+                const progressBar = document.getElementById('progressBar');
+                progressBar.style.backgroundColor = color;
+                
+                // Reinicia a animação
+                progressBar.style.animation = 'none';
+                progressBar.offsetHeight; // Força um reflow
+                progressBar.style.animation = 'progress 3s ease-in-out infinite';
+            }
+        </script>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-icon">Facebook</a>
+            <a href="#" class="social-icon">Twitter</a>
+            <a href="#" class="social-icon">Instagram</a>
+        </div>
+        <p class="copyright">&copy; 2025 Seu Nome. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
