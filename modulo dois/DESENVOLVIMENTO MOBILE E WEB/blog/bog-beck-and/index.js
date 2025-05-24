@@ -2,9 +2,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const SEGREDO = "minhasecretkey";
 const express = require('express');
+const cors = require('cors');
 const knex = require('./db');
-
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 
