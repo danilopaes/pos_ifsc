@@ -1,8 +1,8 @@
-#include <WiFi.h>
+#include <WiFi.h> 
 #include <PubSubClient.h>
 
-const char* ssid = "RWSS2F";
-const char* password = "Doi39x-Wa!";
+const char* ssid = "RWSS2F"; // colocar nome da minha rede
+const char* password = "Doi39x-Wa!"; // colocar senha da minha rede
 const int trigPin = 18;
 const int echoPin = 19;
 
