@@ -54,3 +54,21 @@ Ulrich e Eppinger (1995)
 
 
 como enterder dados nfc
+
+* Diagrama Mudge -> feramente para categorizar as prioridades do cliente
+* QFD -> transformas necessidades do cliente em requisitos do produto (especificações)
+* Modelagem Funcional
+* Matriz Morfologica
+
+
+# Sintese
+
+O processo de inovação exige método, planejamento e gestão
+O PDP é uma ferramenta prática para estruturar ideias 
+
+
+Usar a atividade 3 identificando oportunidades
+
+
+
+

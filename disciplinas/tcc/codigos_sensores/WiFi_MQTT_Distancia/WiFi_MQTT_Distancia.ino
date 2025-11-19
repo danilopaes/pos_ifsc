@@ -1,15 +1,19 @@
-#include <WiFi.h> 
+//#include <WiFi.h>
+#include <ESP8266WiFi.h> 
 #include <PubSubClient.h>
 
-const char* ssid = "RWSS2F"; // colocar nome da minha rede
-const char* password = "Doi39x-Wa!"; // colocar senha da minha rede
-const int trigPin = 18;
-const int echoPin = 19;
+//const char* ssid = "ProjetoTCC"; // colocar nome da minha rede
+//const char* password = "danilo123"; // colocar senha da minha rede
+
+const char* ssid = "RIBEIRO"; // colocar nome da minha rede
+const char* password = "PaesRibeiro"; // colocar senha da minha rede
+const int trigPin = 12;
+const int echoPin = 14;
 
 // Broker MQTT
-const char* mqtt_server = "192.168.1.101";
+const char* mqtt_server = "192.168.16.108";
 const int mqtt_port = 1883;
-const char* mqtt_topic = "tpiot/distancia";
+const char* mqtt_topic = "IFSCTub/ETCC001/distancia";
 
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
@@ -46,6 +50,17 @@ void reconnect_mqtt() {
   }
 }
 
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+
+  setup_wifi();
+  mqttClient.setServer(mqtt_server, mqtt_port);
+}
+
+
 float distance_measure() {
   long duration;
   float distance;
@@ -65,17 +80,10 @@ float distance_measure() {
   return distance;
 }
 
-void setup() {
-  Serial.begin(115200);
-
-  pinMode(trigPin, OUTPUT);
-  pinMode(echoPin, INPUT);
-
-  setup_wifi();
-  mqttClient.setServer(mqtt_server, mqtt_port);
-}
+//proxima função
 
 void loop() {
+  char msg[200];
   verify_wifi();
   
   if (!mqttClient.connected()) {
@@ -83,12 +91,19 @@ void loop() {
   }
   mqttClient.loop();
   
-  // Publicar no MQTT
-  char msg[50];
-  snprintf(msg, sizeof(msg), "%.2f", distance_measure());
+  // Publicar no MQTT: Distancia
+  snprintf(msg, sizeof(msg), "{\"distance\":%.2f}", distance_measure());
   mqttClient.publish(mqtt_topic, msg);
   Serial.print("MQTT Send: ");
   Serial.println(msg);
-  
+  delay(1000);
+
+  // Publicar no MQTT: Proximo Sensor
+  snprintf(msg, sizeof(msg), "{\"distance\":%.2f}", distance_measure());
+  mqttClient.publish(mqtt_topic, msg);
+  Serial.print("MQTT Send: ");
+  Serial.println(msg);
+  delay(1000);
+
   delay(5000);
 }
