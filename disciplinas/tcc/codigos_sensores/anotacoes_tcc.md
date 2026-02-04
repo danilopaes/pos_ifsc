@@ -53,3 +53,13 @@ Senha: danilo123
 * InfluxDB
 - Usuario: danilo
 - Senha: danilo123
+
+
+### teste Display
+
+no dia 04/02/2026 foi realizado o primeiro teste do display, para esse teste foi desenvolvido tres tipos de código
+um onde aparece uma frase "Oled Ok", os outros dois com animações do simplo do infinito e de um boneco andando
+esses teste foram realizados para ver se o display está funcional e se iria mostrar corretamente as menssagens e imagens 
+que deveriam aparecer.
+
+O proximo passo é testar o display com o código do projeto para verificar se os dados das variaveis serão aprecentados corretamente.
