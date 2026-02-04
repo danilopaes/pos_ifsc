@@ -1,18 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
-// ===== OLED =====
-#include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-
-// ----- Definições OLED -----
-#define SCREEN_WIDTH 128
-#define SCREEN_HEIGHT 64
-#define OLED_ADDRESS 0x3C   // Endereço I2C padrão
-
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
-
 // ----- WiFi -----
 const char* ssid = "RIBEIRO";
 const char* password = "PaesRibeiro";
@@ -23,14 +11,6 @@ const int echoPin = 14;
 
 // ----- Sensor de Gás MQ-2 -----
 const int gasPin = A0;  // Entrada analógica do ESP8266
-
-// ---------- SENSOR DE GÁS-MQ4 ----------
-
-// ---------- SENSOR DE SOLO ----------
-
-// ---------- SENSOR DE TEMPERATURA E UMIDADE DO SOLO ----------  
-
-// ---------- SENSOR DE TEMPERATURA E UMIDADE DO AR ----------
 
 // ----- MQTT -----
 const char* mqtt_server = "192.168.16.108";
@@ -47,8 +27,7 @@ void setup_wifi() {
   Serial.print("Conectando ao WiFi...");
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
+    delay(500); Serial.print(".");
   }
   Serial.println("\nWiFi conectado! IP: " + WiFi.localIP().toString());
 }
@@ -109,20 +88,6 @@ void setup() {
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 
-  // ----- Inicialização OLED -----
-  if (!display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDRESS)) {
-    Serial.println(F("Falha ao iniciar o OLED"));
-    while (true);
-  }
-
-  display.clearDisplay();
-  display.setTextSize(1);
-  display.setTextColor(SSD1306_WHITE);
-  display.setCursor(0, 0);
-  display.println("Sistema iniciando...");
-  display.display();
-  delay(1500);
-
   setup_wifi();
   mqttClient.setServer(mqtt_server, mqtt_port);
 }
@@ -141,43 +106,11 @@ void loop() {
   mqttClient.publish(mqtt_topic_distance, msg);
   Serial.println(String("MQTT Send (Distância): ") + msg);
 
-  // ---------- SENSOR DE GÁS MQ-2 ----------
+  // ---------- SENSOR DE GÁS ----------
   int gas_value = read_gas();
   snprintf(msg, sizeof(msg), "{\"gas\":%d}", gas_value);
   mqttClient.publish(mqtt_topic_gas, msg);
   Serial.println(String("MQTT Send (Gás): ") + msg);
-
-  // ---------- SENSOR DE GÁS-MQ4 ----------
-
-  // ---------- SENSOR DE SOLO ----------
-
-  // ---------- SENSOR DE TEMPERATURA E UMIDADE DO SOLO ----------  
-
-  // ---------- SENSOR DE TEMPERATURA E UMIDADE DO AR ----------
-
-  // ===== Atualização do OLED =====
-  display.clearDisplay();
-  display.setCursor(0, 0);
-
-  display.println("Monitoramento");
-  display.println("----------------");
-
-  display.print("Dist: ");
-  display.print(distance, 1);
-  display.println(" cm");
-
-  display.print("Gas MQ2: ");
-  display.println(gas_value);
-
-  display.println();
-
-  display.print("WiFi: ");
-  display.println(WiFi.status() == WL_CONNECTED ? "OK" : "OFF");
-
-  display.print("MQTT: ");
-  display.println(mqttClient.connected() ? "OK" : "OFF");
-
-  display.display();  // Atualiza tudo de uma vez (sem flicker)
 
   delay(2000); // Ajuste conforme necessário
 }
