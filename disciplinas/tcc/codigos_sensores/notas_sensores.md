@@ -150,4 +150,30 @@ Linguagem: C++ (Arduino Framework)
 
 ---
 
+# Estrutura FINAL do sistema (conceitual)
+
+setup()
+ ├─ Serial
+ ├─ OLED
+ ├─ DHT22
+ ├─ Ultrassônico
+ ├─ WiFi
+ └─ MQTT
+
+loop()
+ ├─ Verifica WiFi
+ ├─ Verifica MQTT
+ ├─ Le sensores
+ │   ├─ Temperatura
+ │   ├─ Umidade
+ │   ├─ Gás
+ │   └─ Distância
+ ├─ Publica MQTT
+ ├─ Atualiza OLED
+ │   ├─ Dados
+ │   ├─ Status
+ │   └─ Alertas
+ └─ Delay controlado
+
+---
 
