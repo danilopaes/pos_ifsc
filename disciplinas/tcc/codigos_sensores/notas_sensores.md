@@ -1,6 +1,7 @@
 # 📟 Sistema de Monitoramento com ESP32, OLED, DHT22, Ultrassônico e MQ-2
 
-Este projeto implementa um sistema de monitoramento utilizando **ESP32**, capaz de exibir em um **display OLED SSD1306 (128x64 via I2C)** informações de **temperatura**, **umidade**, **distância** e **nível de gás** em tempo real.
+Este projeto implementa um sistema de monitoramento utilizando **ESP32**, capaz de exibir em um **display OLED SSD1306 (128x64 via I2C)**
+informações de **temperatura**, **umidade**, **distância** e **nível de gás** em tempo real.
 
 ---
 
