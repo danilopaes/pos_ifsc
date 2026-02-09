@@ -1,3 +1,4 @@
+
 # 📟 Sistema de Monitoramento com ESP32, OLED, DHT22, Ultrassônico e MQ-2
 
 Este projeto implementa um sistema de monitoramento utilizando **ESP32**, capaz de exibir em um **display OLED SSD1306 (128x64 via I2C)**
@@ -5,7 +6,7 @@ informações de **temperatura**, **umidade**, **distância** e **nível de gás
 
 ---
 
-## 🧠 Componentes Utilizados
+### 🧠 Componentes Utilizados
 
 - ESP32 Dev Module
 - Display OLED 0.96" SSD1306 (128x64 – I2C)
@@ -18,7 +19,7 @@ informações de **temperatura**, **umidade**, **distância** e **nível de gás
 
 ---
 
-## 🔌 Ligações dos Componentes
+### 🔌 Ligações dos Componentes
 
 ### 📟 Display OLED SSD1306 (I2C)
 
@@ -72,7 +73,7 @@ Utilize um **divisor de tensão** (ex: 1kΩ + 2kΩ) para proteger o microcontrol
 
 ---
 
-## 📚 Bibliotecas Necessárias
+### 📚 Bibliotecas Necessárias
 
 Instale via **Gerenciador de Bibliotecas da Arduino IDE**:
 
@@ -83,7 +84,7 @@ Instale via **Gerenciador de Bibliotecas da Arduino IDE**:
 
 ---
 
-## ⚙️ Funcionamento do Sistema
+### ⚙️ Funcionamento do Sistema
 
 O sistema realiza as seguintes leituras:
 
@@ -96,7 +97,7 @@ Todas as informações são atualizadas a cada **2 segundos** e exibidas no disp
 
 ---
 
-## 🖥️ Exibição no Display OLED
+### 🖥️ Exibição no Display OLED
 
 Formato exibido:
 
@@ -112,7 +113,7 @@ Caso algum sensor falhe, o sistema exibe mensagens de erro específicas, como:
 
 ---
 
-## 🧪 Testes Realizados
+### 🧪 Testes Realizados
 
 - ✔️ Inicialização do display OLED
 - ✔️ Leitura correta de temperatura e umidade
@@ -122,7 +123,7 @@ Caso algum sensor falhe, o sistema exibe mensagens de erro específicas, como:
 
 ---
 
-## 🛠️ Observações Técnicas
+### 🛠️ Observações Técnicas
 
 - O barramento I2C do ESP32 foi inicializado manualmente nos pinos:
   - SDA → GPIO 21
@@ -132,7 +133,7 @@ Caso algum sensor falhe, o sistema exibe mensagens de erro específicas, como:
 
 ---
 
-## 🚀 Possíveis Melhorias Futuras
+### 🚀 Possíveis Melhorias Futuras
 
 - Implementação de ícones gráficos no OLED
 - Alertas visuais para níveis críticos de gás
@@ -142,7 +143,7 @@ Caso algum sensor falhe, o sistema exibe mensagens de erro específicas, como:
 
 ---
 
-## 📄 Autor
+### 📄 Autor
 
 Projeto desenvolvido por **Danilo**  
 Plataforma: ESP32  
@@ -150,7 +151,7 @@ Linguagem: C++ (Arduino Framework)
 
 ---
 
-# Estrutura FINAL do sistema (conceitual)
+### Estrutura FINAL do sistema (conceitual)
 
 setup()
  ├─ Serial
@@ -177,3 +178,6 @@ loop()
 
 ---
 
+### Repositorio dos Dados e Códigos
+
+link: https://github.com/danilopaes/pos_ifsc/tree/main/disciplinas/tcc
