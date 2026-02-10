@@ -1,4 +1,3 @@
-
 # 📟 Sistema de Monitoramento com ESP32, OLED, DHT22, Ultrassônico e MQ-2
 
 Este projeto implementa um sistema de monitoramento utilizando **ESP32**, capaz de exibir em um **display OLED SSD1306 (128x64 via I2C)**
@@ -153,10 +152,18 @@ Linguagem: C++ (Arduino Framework)
 
 ### Estrutura FINAL do sistema (conceitual)
 
+```cpp
 setup()
  ├─ Serial
  ├─ OLED
  ├─ DHT22
+ │   ├─ Temperatura do Ar
+ │   └─ Umidade do Ar
+ ├─ Sensor de Solo
+ │   ├─ Umidade do Solo
+ │   └─ Temperatura do Solo
+ ├─ MQ-4 (Gás Metano)
+ ├─ MQ-135 (Qualidade do Ar)
  ├─ Ultrassônico
  ├─ WiFi
  └─ MQTT
@@ -164,18 +171,30 @@ setup()
 loop()
  ├─ Verifica WiFi
  ├─ Verifica MQTT
- ├─ Le sensores
- │   ├─ Temperatura
- │   ├─ Umidade
- │   ├─ Gás
- │   └─ Distância
+ ├─ Lê sensores
+ │   ├─ DHT22
+ │   │   ├─ Temperatura do Ar
+ │   │   └─ Umidade do Ar
+ │   ├─ Sensor de Solo
+ │   │   ├─ Umidade do Solo
+ │   │   └─ Temperatura do Solo
+ │   ├─ MQ-4
+ │   │   └─ Concentração de Metano
+ │   ├─ MQ-135
+ │   │   └─ Qualidade do Ar
+ │   └─ Ultrassônico
+ │       └─ Distância / Nível
  ├─ Publica MQTT
+ │   ├─ Tópico geral
+ │   └─ Payload identificado por sensor
  ├─ Atualiza OLED
- │   ├─ Dados
- │   ├─ Status
- │   └─ Alertas
- └─ Delay controlado
+ │   ├─ Dados principais
+ │   ├─ Status (WiFi / MQTT)
+ │   └─ Alertas (níveis críticos)
+ └─ Delay controlado (non-blocking se possível)
 
+ ```
+ 
 ---
 
 ### Repositorio dos Dados e Códigos
