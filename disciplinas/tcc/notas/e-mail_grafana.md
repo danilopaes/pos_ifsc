@@ -1,3 +1,6 @@
+
+### Enviar e-mail com os dados pelo Grafana
+
 Para **enviar e-mail com os dados pelo Grafana**, você deve usar o **sistema de Alertas do Grafana**. O fluxo é este:
 
 **MQTT → Grafana (dashboard/painel) → Alerta → E-mail**
@@ -138,4 +141,3 @@ Se quiser **relatórios automáticos** (ex: diário/semanal):
 ✔ SMTP configurado  
 ✔ Contact Point (Email)  
 ✔ Alert Rule no painel
-
