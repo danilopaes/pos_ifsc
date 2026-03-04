@@ -1,0 +1,72 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Esquematico ESP32">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ESP32 -->
+        <mxCell id="esp" value="ESP32&#xa;GPIO15&#xa;GPIO26&#xa;GPIO25&#xa;GPIO21&#xa;GPIO22&#xa;3V3&#xa;5V&#xa;GND" style="shape=rectangle;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="650" y="300" width="180" height="260" as="geometry"/>
+        </mxCell>
+
+        <!-- DHT22 -->
+        <mxCell id="dht" value="DHT22" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="150" width="100" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Pull-up resistor -->
+        <mxCell id="r_pull" value="R1&#xa;10kΩ" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="120" width="60" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- HC-SR04 -->
+        <mxCell id="ultra" value="HC-SR04" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="350" width="120" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Divisor tensão -->
+        <mxCell id="r2" value="R2&#xa;1.8kΩ" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="360" width="60" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="r3" value="R3&#xa;3.3kΩ" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="430" width="60" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- MQ Sensor -->
+        <mxCell id="mq" value="MQ-x" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="550" width="100" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- OLED -->
+        <mxCell id="oled" value="OLED SSD1306" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="350" width="130" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- GND Symbol -->
+        <mxCell id="gnd" value="GND" style="shape=triangle;direction=south;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="500" width="40" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Connections -->
+        <mxCell edge="1" parent="1" source="dht" target="esp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="ultra" target="esp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="mq" target="esp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell edge="1" parent="1" source="oled" target="esp">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
