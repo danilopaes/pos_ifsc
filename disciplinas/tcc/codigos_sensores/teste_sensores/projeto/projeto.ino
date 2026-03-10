@@ -34,7 +34,7 @@ const char* ssid = "RIBEIRO";
 const char* password = "PaesRibeiro";
 
 // ===== MQTT =====
-const char* mqtt_server = "192.168.16.108";
+const char* mqtt_server = "192.168.16.111";
 const int mqtt_port = 1883;
 
 const char* topic_temp  = "IFSCTub/ETCC001/temperatura";
