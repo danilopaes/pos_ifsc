@@ -40,10 +40,6 @@ MQ135 mq135(MQ135_PIN);
 // ===== Umidade Solo =====
 #define SOIL_MOISTURE_PIN 36
 
-// ===== LEDs Bokashi =====
-#define LED_VERDE 2
-#define LED_VERMELHO 3
-
 // ===== LIMITES =====
 #define TA_MIN 15
 #define TA_MAX 35
@@ -72,7 +68,7 @@ const char* ssid = "RIBEIRO";
 const char* password = "PaesRibeiro";
 
 // ===== MQTT =====
-const char* mqtt_server = "192.168.16.108";
+const char* mqtt_server = "192.168.16.111";
 const int mqtt_port = 1883;
 
 const char* topic_temp_air  = "IFSCTub/ETCC001/temperatura_ar";
@@ -88,35 +84,50 @@ PubSubClient mqttClient(espClient);
 
 // ===== FUNÇÕES =====
 void setup_wifi() {
+
   WiFi.begin(ssid, password);
+
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
   }
+
 }
 
 void verify_wifi() {
+
   if (WiFi.status() != WL_CONNECTED) {
     setup_wifi();
   }
+
 }
 
 void reconnect_mqtt() {
+
   while (!mqttClient.connected()) {
+
     mqttClient.connect("ESP32_ETCC001");
     delay(2000);
+
   }
+
 }
 
 float medirDistancia() {
+
   digitalWrite(TRIG_PIN, LOW);
   delayMicroseconds(2);
+
   digitalWrite(TRIG_PIN, HIGH);
   delayMicroseconds(10);
+
   digitalWrite(TRIG_PIN, LOW);
 
   long duracao = pulseIn(ECHO_PIN, HIGH, 25000);
+
   if (duracao == 0) return -1;
+
   return duracao * 0.034 / 2;
+
 }
 
 // ===== SETUP =====
@@ -126,10 +137,9 @@ void setup() {
 
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
-  pinMode(LED_VERDE, OUTPUT);
-  pinMode(LED_VERMELHO, OUTPUT);
 
   Wire.begin(OLED_SDA, OLED_SCL);
+
   display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);
   display.clearDisplay();
   display.setTextColor(SSD1306_WHITE);
@@ -138,19 +148,24 @@ void setup() {
   sensors.begin();
 
   setup_wifi();
+
   mqttClient.setServer(mqtt_server, mqtt_port);
+
 }
 
 // ===== LOOP =====
 void loop() {
 
   verify_wifi();
+
   if (!mqttClient.connected()) reconnect_mqtt();
+
   mqttClient.loop();
 
   contador_ciclo++;
 
   // ===== LEITURA SENSORES =====
+
   float temp = dht.readTemperature();
   float hum  = dht.readHumidity();
   float dist = medirDistancia();
@@ -161,9 +176,10 @@ void loop() {
   sensors.requestTemperatures();
   float temp_soil = sensors.getTempCByIndex(0);
 
-  int gas_mq135 = mq135.getPPM();
+  float gas_mq135 = mq135.getPPM();
 
   // ===== PUBLICAÇÃO MQTT =====
+
   char msg[50];
 
   snprintf(msg, sizeof(msg), "%.2f", temp);
@@ -175,7 +191,7 @@ void loop() {
   snprintf(msg, sizeof(msg), "%d", gas_mq2);
   mqttClient.publish(topic_gas_mq2, msg);
 
-  snprintf(msg, sizeof(msg), "%d", gas_mq135);
+  snprintf(msg, sizeof(msg), "%.2f", gas_mq135);
   mqttClient.publish(topic_gas_mq135, msg);
 
   snprintf(msg, sizeof(msg), "%.2f", dist);
@@ -188,13 +204,17 @@ void loop() {
   mqttClient.publish(topic_temp_soil, msg);
 
   // ===== ALGORITMO BOKASHI =====
+
   int CH4 = gas_mq2;
-  int NH3 = gas_mq135;
-  int CO2 = gas_mq135;
+  float NH3 = gas_mq135;
+  float CO2 = gas_mq135;
+
   int UC = soil_hum;
   float TC = temp_soil;
+
   float TA = temp;
   float UA = hum;
+
   float NI = dist;
 
   float pH_estimado = (NH3 * 0.0001 + UC * 0.00005 - TC * 0.02) + 6.0;
@@ -222,21 +242,15 @@ void loop() {
   }
 
   String fase;
+
   if (dias <= 4) fase = "Inicial";
   else if (dias <= 23) fase = "Termofilica";
   else fase = "Maturacao";
 
-  if (status_ok) {
-    digitalWrite(LED_VERDE, HIGH);
-    digitalWrite(LED_VERMELHO, LOW);
-  } else {
-    digitalWrite(LED_VERDE, LOW);
-    digitalWrite(LED_VERMELHO, millis() % 1000 < 500);
-  }
-
   if (contador_ciclo % 288 == 0) dias++;
 
   // ===== OLED =====
+
   display.clearDisplay();
   display.setCursor(0,0);
   display.setTextSize(1);
@@ -257,4 +271,5 @@ void loop() {
   display.display();
 
   delay(300000); // 5 minutos
+
 }
