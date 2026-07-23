@@ -1,0 +1,33 @@
+#pragma once
+
+// Ajuste estes valores antes do primeiro flash.
+#define WIFI_SSID "RIBEIRO"
+#define WIFI_PASSWORD "PaesRibeiro"
+#define MQTT_HOST "192.168.16.109"
+#define MQTT_PORT 1883
+#define MQTT_TOPIC_PREFIX "IFSCTub/ETCC001/"
+
+#define PIN_DHT 4
+#define PIN_DHT_TYPE 22
+#define PIN_ONEWIRE 5
+#define PIN_MQ2 34
+#define PIN_MQ135 35
+#define PIN_SOIL 32
+#define PIN_TRIG 18
+#define PIN_ECHO 19
+#define PIN_SD_CS 13
+#define OLED_ADDRESS 0x3C
+
+#define INTERVALO_SENSORES_MS 2000UL
+#define INTERVALO_DISPLAY_MS 1000UL
+#define INTERVALO_MQTT_MS 10000UL
+#define INTERVALO_STORAGE_MS 10000UL
+#define WIFI_TIMEOUT_MS 30000UL
+#define WIFI_RETRY_MS 15000UL
+#define DISTANCIA_VAZIO_CM 40.0f
+#define DISTANCIA_CHEIO_CM 5.0f
+
+#define TEMP_IDEAL_MIN 20.0f
+#define TEMP_IDEAL_MAX 35.0f
+#define UMIDADE_IDEAL_MIN 40.0f
+#define UMIDADE_IDEAL_MAX 75.0f
